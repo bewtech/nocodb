@@ -71,14 +71,6 @@ const onMouseover = async () => {
 
 <template>
   <div class="flex flex-row items-center w-full bg-white rounded-lg border-1 border-brand-500 shadow-sm mb-0.5 overflow-hidden">
-    <a
-      v-e="['c:navbar:join-cloud']"
-      class="flex flex-grow !no-underline items-center justify-center border-r-1 h-full hover:bg-gray-100"
-      href="https://app.nocodb.com/#/signin?utm_source=OSS&utm_medium=OSS&utm_campaign=OSS&utm_content=OSS"
-    >
-      <div class="px-1 text-gray-500 prose-sm" style="line-height: 1.3125rem">Try NocoDB Cloud</div>
-    </a>
-
     <a-tooltip arrow-point-at-center overlay-class-name="nc-join-cloud-tooltip">
       <NcButton type="text" size="small" class="!rounded-l-none !rounded-r-lg" @mouseover="onMouseover">
         <GeneralIcon icon="help" class="!text-lg -mt-0.5 text-gray-700" />
@@ -124,7 +116,7 @@ const onMouseover = async () => {
               <div class="text-xs leading-[18px] font-normal text-nc-content-gray-muted text-center">
                 (no credit card required)
               </div>
-              <a href="https://app.nocodb.com/#/signin" target="_blank" class="!no-underline" rel="noopener">
+              <a href="https://bewtech.io" target="_blank" class="!no-underline" rel="noopener">
                 <NcButton type="secondary" class="w-full">Start for Free</NcButton>
               </a>
             </div>

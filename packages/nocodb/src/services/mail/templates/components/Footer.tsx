@@ -76,7 +76,7 @@ export const Footer = () => {
       <Section className="mt-6">
         <Row className="max-w-[380px] m-auto">
           <Column className="border pr-1 border-y-0 border-l-0 border-r-1 border-solid border-gray-200">
-            <Link href="https://app.nocodb.com/" target="_blank">
+            <Link href="https://bewtech.io/" target="_blank">
               <Text className="text-center underline py-0 !my-0 text-gray-500 text-[13px]">
                 Getting Started
               </Text>
