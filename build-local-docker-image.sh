@@ -43,6 +43,7 @@ function copy_gui_artifacts() {
 
     echo ">> Copiando build da UI (nc-gui)..."
     rsync -rvzh --delete .output/public/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/
+    rsync -rvzh --delete .output/public/ ${SCRIPT_DIR}/node_modules/nc-lib-gui/lib/dist/
 }
 
 function package_nocodb() {
