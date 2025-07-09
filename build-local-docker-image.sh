@@ -8,7 +8,7 @@
 #   3b. copy nc-gui build to nocodb dir
 # 4. Build nocodb
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 LOG_FILE=${SCRIPT_DIR}/build-local-docker-image.log
 ERROR=""
 
@@ -38,8 +38,11 @@ function build_gui() {
 }
 
 function copy_gui_artifacts() {
-     # copy nc-gui build to nocodb dir
-    rsync -rvzh --delete ./dist/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/ || ERROR="copy_gui_artifacts failed"
+    # copy nc-gui build to nocodb dir
+    #rsync -rvzh --delete ./dist/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/ || ERROR="copy_gui_artifacts failed"
+
+    echo ">> Copiando build da UI (nc-gui)..."
+    rsync -rvzh --delete ${SCRIPT_DIR}/packages/nc-gui/.output/public/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/ || ERROR="copy_gui_artifacts failed"
 }
 
 function package_nocodb() {
@@ -54,10 +57,9 @@ function build_image() {
 }
 
 function log_message() {
-    if [[ ${ERROR} != "" ]];
-    then
-        >&2 echo "build failed, Please check build-local-docker-image.log for more details"
-        >&2 echo "ERROR: ${ERROR}"
+    if [[ ${ERROR} != "" ]]; then
+        echo >&2 "build failed, Please check build-local-docker-image.log for more details"
+        echo >&2 "ERROR: ${ERROR}"
         exit 1
     else
         echo 'docker image with tag "nocodb-local" built sussessfully. Use below sample command to run the container'
@@ -70,20 +72,20 @@ stop_and_remove_container
 remove_image
 
 echo "Info: Installing dependencies" | tee -a ${LOG_FILE}
-install_dependencies 1>> ${LOG_FILE} 2>> ${LOG_FILE}
+install_dependencies 1>>${LOG_FILE} 2>>${LOG_FILE}
 
 echo "Info: Building nc-gui" | tee -a ${LOG_FILE}
-build_gui 1>> ${LOG_FILE} 2>> ${LOG_FILE}
+build_gui 1>>${LOG_FILE} 2>>${LOG_FILE}
 
 echo "Info: Copy nc-gui build to nocodb dir" | tee -a ${LOG_FILE}
-copy_gui_artifacts 1>> ${LOG_FILE} 2>> ${LOG_FILE}
+copy_gui_artifacts 1>>${LOG_FILE} 2>>${LOG_FILE}
 
 echo "Info: Build nocodb, package nocodb-sdk and nc-gui" | tee -a ${LOG_FILE}
-package_nocodb 1>> ${LOG_FILE} 2>> ${LOG_FILE}
+package_nocodb 1>>${LOG_FILE} 2>>${LOG_FILE}
 
 if [[ ${ERROR} == "" ]]; then
     echo "Info: Building docker image" | tee -a ${LOG_FILE}
-    build_image 1>> ${LOG_FILE} 2>> ${LOG_FILE}
+    build_image 1>>${LOG_FILE} 2>>${LOG_FILE}
 fi
 
 log_message | tee -a ${LOG_FILE}
