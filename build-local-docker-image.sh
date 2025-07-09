@@ -14,13 +14,13 @@ ERROR=""
 
 function stop_and_remove_container() {
     # Stop and remove the existing container
-    docker stop nocodb-local >/dev/null 2>&1
-    docker rm nocodb-local >/dev/null 2>&1
+    docker stop nocodb-local:v10 >/dev/null 2>&1
+    docker rm nocodb-local:v10 >/dev/null 2>&1
 }
 
 function remove_image() {
     # Remove the existing image
-    docker rmi nocodb-local >/dev/null 2>&1
+    docker rmi nocodb-local:v10 >/dev/null 2>&1
 }
 
 function install_dependencies() {
@@ -42,7 +42,7 @@ function copy_gui_artifacts() {
     #rsync -rvzh --delete ./dist/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/ || ERROR="copy_gui_artifacts failed"
 
     echo ">> Copiando build da UI (nc-gui)..."
-    rsync -rvzh --delete ${SCRIPT_DIR}/packages/nc-gui/.output/public/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/ || ERROR="copy_gui_artifacts failed"
+    rsync -rvzh --delete .output/public/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/
 }
 
 function package_nocodb() {
@@ -53,7 +53,7 @@ function package_nocodb() {
 
 function build_image() {
     # build docker
-    docker build . -f Dockerfile.local -t nocodb-local || ERROR="build_image failed"
+    docker build . -f Dockerfile.local -t nocodb-local:v10 || ERROR="build_image failed"
 }
 
 function log_message() {
@@ -62,8 +62,8 @@ function log_message() {
         echo >&2 "ERROR: ${ERROR}"
         exit 1
     else
-        echo 'docker image with tag "nocodb-local" built sussessfully. Use below sample command to run the container'
-        echo 'docker run -d -p 3333:8080 --name nocodb-local nocodb-local '
+        echo 'docker image with tag "nocodb-local:v10" built sussessfully. Use below sample command to run the container'
+        echo 'docker run -d -p 3333:8080 --name nocodb-local:v10 nocodb-local:v10 '
     fi
 }
 
