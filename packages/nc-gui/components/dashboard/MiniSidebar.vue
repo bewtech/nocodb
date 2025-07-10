@@ -198,24 +198,7 @@ useEventListener(document, 'keydown', async (e: KeyboardEvent) => {
       </template>
     </div>
     <div class="flex flex-col items-center">
-      <DashboardMiniSidebarItemWrapper>
-        <NcTooltip :title="$t('general.help')" placement="right" hide-on-click :arrow="false">
-          <DashboardMiniSidebarHelp />
-        </NcTooltip>
-      </DashboardMiniSidebarItemWrapper>
       <template v-if="!isMobileMode">
-        <DashboardMiniSidebarItemWrapper>
-          <NcTooltip
-            v-if="appInfo.feedEnabled"
-            :title="`${$t('title.whatsNew')}!`"
-            placement="right"
-            hide-on-click
-            :arrow="false"
-          >
-            <DashboardSidebarFeed />
-          </NcTooltip>
-        </DashboardMiniSidebarItemWrapper>
-
         <div class="px-2 w-full">
           <NcDivider class="!my-0 !border-nc-border-gray-dark" />
         </div>
