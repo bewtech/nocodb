@@ -46,10 +46,6 @@ onUnmounted(() => {
       <DashboardTreeViewProjectList>
         <template #footer>
           <div v-if="!isSharedBase" class="nc-sidebar-bottom-section">
-            <PaymentUpgradeSidebarBanner v-if="isEeUI" />
-            <LazyGeneralMaintenanceAlert />
-
-            <GeneralGift v-if="!isEeUI" />
 
             <DashboardSidebarBeforeUserInfo />
 
@@ -76,11 +72,9 @@ onUnmounted(() => {
         <DashboardTreeView v-if="!isWorkspaceLoading" />
       </div>
       <div v-if="!isSharedBase" class="nc-sidebar-bottom-section">
-        <PaymentUpgradeSidebarBanner v-if="isEeUI" />
 
-        <GeneralGift v-if="!isEeUI" />
         <DashboardSidebarBeforeUserInfo />
-        <DashboardSidebarFeed v-if="appInfo.feedEnabled" />
+
         <DashboardSidebarUserInfo />
         <DashboardSidebarVersion v-if="appInfo.isOnPrem" />
       </div>
