@@ -250,7 +250,7 @@ export class MailService {
 
           await mailerAdapter.mailSend({
             to: emails.join(','),
-            subject: `NocoDB Forms: Someone has responded to ${formView.title}`,
+            subject: `BewtechDB Forms: Someone has responded to ${formView.title}`,
             html: await this.renderMail('FormSubmission', {
               formTitle: formView.title,
               tableTitle: model.title,

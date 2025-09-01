@@ -3,9 +3,9 @@
 <template>
   <div
     class="flex items-center gap-3 cursor-pointer text-gray-700 dark:text-slate-300"
-    @click="openLink('https://www.nocodb.com')"
+    @click="openLink('https://www.bewtech.io')"
   >
-    <img src="~assets/img/brand/logo_bewtech.svg" alt="NocoDB" class="flex-none w-6 h-6" />
-    <div class="text-sm">NocoDB Forms</div>
+    <img src="~assets/img/brand/logo_bewtech.svg" alt="BewtechDB" class="flex-none w-6 h-6" />
+    <div class="text-sm">Bewtech Forms</div>
   </div>
 </template>
